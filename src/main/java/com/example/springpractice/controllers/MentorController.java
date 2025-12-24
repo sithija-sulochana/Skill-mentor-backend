@@ -21,7 +21,13 @@ public class MentorController {
 
     @GetMapping
     public List<Mentor> getAllMentors() {
-        return mentorService.getAllMentors();
+        try {
+            return mentorService.getAllMentors();
+        }catch (Exception exception){
+            System.out.println("Error creating mentor "+exception);
+            throw exception;
+        }
+
     }
 
     @GetMapping("{id}")
