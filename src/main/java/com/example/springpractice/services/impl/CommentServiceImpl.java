@@ -43,7 +43,9 @@ public class CommentServiceImpl implements CommentService {
         log.info("Creating comment for sessionId={} by studentId={}",
                 session.getId(), student.getId());
 
+        session.setCommentCount(session.getCommentCount()+1);
         return commentRepository.save(comment);
+
     }
 
     @Override
