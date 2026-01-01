@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.apache.lucene.analysis.payloads.PayloadEncoder;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -44,5 +45,9 @@ public class Student {
 
     @OneToMany(mappedBy = "student")
     private List<Session> sessions;
+
+
+    @OneToMany(mappedBy = "student")
+    private List<Payment> payments;
 
 }

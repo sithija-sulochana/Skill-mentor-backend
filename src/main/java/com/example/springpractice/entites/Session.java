@@ -38,8 +38,6 @@ public class Session {
     private Subject subject;
 
 
-
-
     @Column(name = "session_at", nullable = false)
     private Date sessionAt;
 
@@ -72,4 +70,19 @@ public class Session {
     @OneToMany(mappedBy = "session")
 //    @JsonIgnore
     private List<Comment> comments;
+    @Column(name = "comment_count")
+//    @Transient
+    private Integer commentCount=0;
+
+
+//    public Integer getCommentCount() {
+//
+//        if (comments != null) {
+//            return comments.size();
+//        }
+//        return 0;
+//    }
+    @OneToOne(mappedBy = "session")
+    private Payment payment;
+
 }
