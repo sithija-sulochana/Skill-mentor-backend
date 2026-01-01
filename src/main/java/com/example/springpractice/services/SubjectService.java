@@ -12,36 +12,17 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
-@RequiredArgsConstructor
-public class SubjectService {
+
+public interface SubjectService {
 
 
-    private final SubjectRepository subjectRepository;
-    private ModelMapper modelMapper;
-    private final MentorRepository mentorRepository;
 
-    public List<Subject> getAllSubjects(){
-        return subjectRepository.findAll(); // Query - SELECT * FROM subject
-    }
-    public Subject createSubject( Long mentorId, Subject subject){
-        Mentor mentor = mentorRepository.findById(mentorId).get();
-        subject.setMentor(mentor);
-        return subjectRepository.save(subject); // INSERT
-    }
+    public List<Subject> getAllSubjects();
+    public Subject createSubject( Long mentorId, Subject subject);
 
-    public Subject getSubjectById(Long id){
-        return  subjectRepository.findById(id).get();
-    }
+    public Subject getSubjectById(Long id);
 
-    public Subject updateSubjectById(Long id,Subject updatedSubject){
-        Subject subject = subjectRepository.findById(id).get();
-        subject.setSubjectName(updatedSubject.getSubjectName());
-        subject.setDescription(updatedSubject.getDescription());
-        return subjectRepository.save(subject);
-    }
+    public Subject updateSubjectById(Long id,Subject updatedSubject);
 
-    public void deleteSubject(Long id){
-         subjectRepository.deleteById(id);
-    }
+    public void deleteSubject(Long id);
 }

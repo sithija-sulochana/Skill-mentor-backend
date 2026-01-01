@@ -60,4 +60,8 @@ public class Mentor {
     @OneToMany(mappedBy = "mentor")
     private List<Subject> subjects;
 
+    @OneToMany(mappedBy = "mentor")
+    private List<Session> sessions;
+
+
 }
