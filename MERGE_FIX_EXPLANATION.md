@@ -22,13 +22,15 @@ When attempting to merge the `feature-adding_entities` branch into `master`, Git
 - All commits from `feature-adding_entities` are now part of `master`'s history
 
 ## Changes Merged
-The merge included:
-- New entities: Student, Session, Payment
+The merge included all changes from the `feature-adding_entities` branch:
+- New entities: Student, Session
 - New controllers: AbstractController, StudentController, SessionController, BlockerController, ProxyController
 - New services and implementations
 - Exception handling framework
 - Validation utilities
 - Enhanced Comment functionality
+
+**Note:** The original feature branch references a `Payment` entity in code but does not include the entity definition. This has been preserved as-is from the original branch.
 
 ## Branch Status
 - `master`: Now at commit `912af1c` (add payment entity) - includes all feature branch changes
@@ -71,10 +73,9 @@ git push --force origin feature-adding_entities
 4. The `feature-adding_entities` branch can then be deleted or updated separately
 
 ### What's Been Fixed
-- ✅ Added the missing `Payment.java` entity file
-- ✅ All code now compiles successfully  
 - ✅ Git history has been rewritten to establish a common ancestor
 - ✅ Merge commit is available in the `copilot/merge-future-adding-entity` branch
+- ✅ All code from `feature-adding_entities` branch is preserved exactly as-is
 
 ### Verification
 After pushing, you can verify the fix by:
