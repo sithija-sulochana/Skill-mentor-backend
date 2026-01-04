@@ -1,7 +1,6 @@
 package com.example.springpractice.services;
 
 import com.example.springpractice.entites.Mentor;
-import com.example.springpractice.entites.Mentor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 

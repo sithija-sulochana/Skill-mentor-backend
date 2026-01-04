@@ -32,14 +32,12 @@ public class MentorServiceImpl implements MentorService {
     }
 
     public Mentor createMentor(Mentor mentor){
-
         try{
-
+            return mentorRepository.save(mentor);
         }catch (Exception exception){
             log.error("Failed to create a new mentor",exception);
             throw new SkillMentorException("Failed to create a new mentor",HttpStatus.CONFLICT);
         }
-        return mentorRepository.save(mentor);
     }
 
     public Mentor getMentorById(Long id){
