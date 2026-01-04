@@ -45,9 +45,6 @@ Follow these instructions to set up the Skill Mentor Backend on your local envir
    ./mvnw spring-boot:run
    ```
 
-## API Documentation
-
-- Ensure you provide details for accessing the API documentation (e.g., Swagger-UI, Postman collection, etc.).
 
 ## Contribution Guidelines
 
