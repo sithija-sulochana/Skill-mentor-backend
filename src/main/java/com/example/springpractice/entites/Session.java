@@ -82,7 +82,9 @@ public class Session {
 //        }
 //        return 0;
 //    }
-    @OneToOne(mappedBy = "session")
-    private Payment payment;
+    
+    // TODO: Uncomment when Payment entity is added
+    // @OneToOne(mappedBy = "session")
+    // private Payment payment;
 
 }
