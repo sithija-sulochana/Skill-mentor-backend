@@ -68,7 +68,7 @@ public class Session {
     private Date updatedAt;
 
     @OneToMany(mappedBy = "session")
-//    @JsonIgnore
+    @JsonIgnore
     private List<Comment> comments;
     @Column(name = "comment_count")
 //    @Transient

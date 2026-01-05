@@ -16,5 +16,7 @@ public class CommentDTO {
     @Size(min = 2, max = 50, message = "Please enter lesser than 50 words")
     private String text;
 
+    
+
 
 }

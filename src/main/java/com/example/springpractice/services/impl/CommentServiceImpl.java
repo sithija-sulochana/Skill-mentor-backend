@@ -8,6 +8,7 @@ import com.example.springpractice.repository.CommentRepository;
 import com.example.springpractice.repository.SessionRepository;
 import com.example.springpractice.repository.StudentRepository;
 import com.example.springpractice.services.CommentService;
+import com.example.springpractice.utils.SentimentUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
@@ -24,6 +25,8 @@ public class CommentServiceImpl implements CommentService {
     private final StudentRepository studentRepository;
     private final CommentRepository commentRepository;
     private final ModelMapper modelMapper;
+
+
 
     @Override
     public Comment createComment(CommentDTO commentDTO) {
@@ -44,6 +47,17 @@ public class CommentServiceImpl implements CommentService {
                 session.getId(), student.getId());
 
         session.setCommentCount(session.getCommentCount()+1);
+//        String sentiment = SentimentUtils.analyzeSentiment(comment.getText());
+//
+//        if (comment.getText().toLowerCase().contains("helpful")
+//                || comment.getText().toLowerCase().contains("clearly")
+//                || comment.getText().toLowerCase().contains("good")
+//                || comment.getText().toLowerCase().contains("excellent")) {
+//            sentiment = "POSITIVE";
+//        }
+//
+//        comment.setSentiment(sentiment);
+
         return commentRepository.save(comment);
 
     }

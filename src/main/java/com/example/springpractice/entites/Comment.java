@@ -37,12 +37,15 @@ public class Comment {
     @Column(nullable = false, length = 1000)
     private String text;
 
+//    @Column(name = "sentiment")
+//    private String sentiment;
+
     @CreationTimestamp
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
     @UpdateTimestamp
-    @Column(name = "updated_at")
+    @Column(name = "updated_at", nullable = false)
     private LocalDateTime updatedAt;
 
 
