@@ -34,14 +34,8 @@ public class MentorController extends AbstractController {
         return sendOkResponse(mentors);
     }
 
-    @GetMapping("{id}")
-    public ResponseEntity<Mentor> getMentorById(@PathVariable Long id) {
-        Mentor mentor = mentorService.getMentorById(id);
-        return sendOkResponse(mentor);
-    }
-
     @PostMapping
-    @PreAuthorize("hasRole('ADMIN','MENTOR')")
+    @PreAuthorize("hasAnyRole('Admin', 'Mentor')")
     public ResponseEntity<Mentor> createMentor(@Valid @RequestBody MentorDTO mentorDTO) {
         Mentor mentor = modelMapper.map(mentorDTO, Mentor.class);
         Mentor createdMentor = mentorService.createMentor(mentor);
