@@ -29,21 +29,22 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     protected void doFilterInternal(@Nonnull HttpServletRequest request, @Nonnull HttpServletResponse response, @Nonnull FilterChain filterChain)
             throws ServletException, IOException {
 
-        String token = extractToken(request);
+        String token = extractToken(request); // The actual token 
 
-        if (token != null && jwtUtil.validateToken(token)) {
-            String username = jwtUtil.extractUsername(token);
-            List<String> roles = jwtUtil.extractRoles(token);
-
-            List<GrantedAuthority> authorities = roles != null ?
+        if (token != null && jwtUtil.validateToken(token)) { //Check whether the token is not empty and it is valid.
+            String username = jwtUtil.extractUsername(token); //Extract the username
+            List<String> roles = jwtUtil.extractRoles(token); // Extract the role
+ 
+            List<GrantedAuthority> authorities = roles != null ?    // Convert roles to Spring Security format
                     roles.stream()
-                            .map(role -> new SimpleGrantedAuthority("ROLE_" + role))
-                            .collect(Collectors.toList()) :
+                            .map(role -> new SimpleGrantedAuthority("ROLE_" + role))  // ROLE_Admin, ROLE_User
+                            .collect(Collectors.toList()) :  // Otherwise, can't use ---> @PreAuthorize("hasRole('Admin')")
+
                     new ArrayList<>();
 
             UsernamePasswordAuthenticationToken authentication =
-                    new UsernamePasswordAuthenticationToken(username, null, authorities);
-            SecurityContextHolder.getContext().setAuthentication(authentication);
+                    new UsernamePasswordAuthenticationToken(username, null, authorities); 
+            SecurityContextHolder.getContext().setAuthentication(authentication); //Store authentication in SecurityContext
         }
 
         filterChain.doFilter(request, response);
@@ -51,8 +52,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     private String extractToken(HttpServletRequest request) {
         String bearerToken = request.getHeader("Authorization");
-        if (bearerToken != null && bearerToken.startsWith("Bearer ")) {
-            return bearerToken.substring(7);
+        if (bearerToken != null && bearerToken.startsWith("Bearer ")) { // If the token has a value and it starts with "bearer", split the pure JWT token without "bearer."
+            return bearerToken.substring(7); 
         }
         return null;
     }
