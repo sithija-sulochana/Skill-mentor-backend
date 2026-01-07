@@ -15,7 +15,9 @@ Skill Mentor Backend is the server-side application designed to manage and suppo
 - **Programming Language**: Java 
 - **Frameworks**: (Springboot)
 - **Database**: (Postgrey SQL)
-- **Other Tools**: (List other tools, e.g., Hibernate, Maven, etc.)
+- **ORM**: Hibernate
+- **Authentication & Authorization** - clerk
+
 
 ## Getting Started
 
