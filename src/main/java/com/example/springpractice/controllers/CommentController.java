@@ -19,7 +19,7 @@ public class CommentController {
 
     private final CommentService commentService;
 
-    // ✅ Create comment
+    // Create comment
     @PostMapping
     public ResponseEntity<Comment> createComment(@RequestBody CommentDTO commentDTO) {
         log.info("Request to create comment");
@@ -27,21 +27,21 @@ public class CommentController {
         return new ResponseEntity<>(createdComment, HttpStatus.CREATED);
     }
 
-    // ✅ Get all comments
+    //  Get all comments
     @GetMapping
     public ResponseEntity<List<Comment>> getAllComments() {
         log.info("Request to get all comments");
         return ResponseEntity.ok(commentService.getAllComments());
     }
 
-    // ✅ Get comment by id
+    //  Get comment by id
     @GetMapping("/{id}")
     public ResponseEntity<Comment> getCommentById(@PathVariable Long id) {
         log.info("Request to get comment with id={}", id);
         return ResponseEntity.ok(commentService.getCommentById(id));
     }
 
-    // ✅ Update comment
+    // Update comment
     @PutMapping("/{id}")
     public ResponseEntity<Comment> updateComment(
             @PathVariable Long id,
@@ -51,7 +51,7 @@ public class CommentController {
         return ResponseEntity.ok(commentService.updateCommentById(id, commentDTO));
     }
 
-    // ✅ Delete comment
+    //  Delete comment
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteComment(@PathVariable Long id) {
