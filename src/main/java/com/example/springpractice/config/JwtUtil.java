@@ -9,14 +9,14 @@ import org.springframework.stereotype.Component;
 import javax.crypto.SecretKey;
 import java.util.List;
 
-@Component
+@Component 
 public class JwtUtil {
 
-    @Value("${jwt.secret:my-secret-key-must-be-at-least-32-characters-long-for-HS256}")
+    @Value("${jwt.secret:my-secret-key-must-be-at-least-32-characters-long-for-HS256}") //Reads jwt.secret from application.properties,If missing → uses a default fallback
     private String secretKey;
 
     private SecretKey getSigningKey() {
-        return Keys.hmacShaKeyFor(secretKey.getBytes());
+        return Keys.hmacShaKeyFor(secretKey.getBytes()); //Converts your secret string into a SecretKey -->HMAC SHA-256 algorithm
     }
 
     public String extractUsername(String token) {
@@ -49,4 +49,6 @@ public class JwtUtil {
                 .parseSignedClaims(token)
                 .getPayload();
     }
+    // This creates --------> {sub=john, roles=[ADMIN, USER], iat=1700000000, exp=1700003600}
+
 }
