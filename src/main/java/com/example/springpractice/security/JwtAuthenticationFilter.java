@@ -1,4 +1,4 @@
-package com.example.springpractice.config;
+package com.example.springpractice.security;
 
 import jakarta.annotation.Nonnull;
 import jakarta.servlet.FilterChain;
@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
-    private final JwtUtil jwtUtil;
+    private final JwtValidator jwtUtil;
     //  BASE VALIDATOR
 
     @Override

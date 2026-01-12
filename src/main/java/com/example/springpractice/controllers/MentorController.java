@@ -27,6 +27,8 @@ public class MentorController extends AbstractController {
     private final MentorService mentorService;
     private final ModelMapper modelMapper;
 
+
+
     @GetMapping
     @PreAuthorize("isAuthenticated()")
     public ResponseEntity<Page<Mentor>> getAllMentors(Pageable pageable) {
@@ -56,4 +58,5 @@ public class MentorController extends AbstractController {
         mentorService.deleteMentor(id);
         return sendNoContentResponse();
     }
+
 }
