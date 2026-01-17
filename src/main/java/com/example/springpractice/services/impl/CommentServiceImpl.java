@@ -8,7 +8,7 @@ import com.example.springpractice.repository.CommentRepository;
 import com.example.springpractice.repository.SessionRepository;
 import com.example.springpractice.repository.StudentRepository;
 import com.example.springpractice.services.CommentService;
-import com.example.springpractice.utils.SentimentUtils;
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;

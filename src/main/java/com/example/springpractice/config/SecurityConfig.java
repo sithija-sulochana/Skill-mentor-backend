@@ -1,7 +1,8 @@
 package com.example.springpractice.config;
 
 import com.example.springpractice.security.AuthenticationEntryPoint;
-import com.example.springpractice.security.JwtAuthenticationFilter;
+import com.example.springpractice.security.AuthenticationFilter;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,6 +14,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfigurationSource;
 
 @Configuration
 @EnableWebSecurity
@@ -20,13 +22,17 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @RequiredArgsConstructor
 public class SecurityConfig {
 
-    private final JwtAuthenticationFilter jwtAuthenticationFilter;
+
     private final AuthenticationEntryPoint authenticationEntryPoint;
+    private final AuthenticationFilter clerkAuthenticationFilter;
+
+    private final CorsConfigurationSource corsConfigurationSource;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
         http
+                .cors(cors ->cors.configurationSource(corsConfigurationSource) )
                 .csrf(csrf -> csrf.disable())
 
                 .sessionManagement(session ->
@@ -43,9 +49,13 @@ public class SecurityConfig {
                 )
 
                 .addFilterBefore(
-                        jwtAuthenticationFilter,
+                        clerkAuthenticationFilter,
                         UsernamePasswordAuthenticationFilter.class
                 )
+//                .addFilterBefore(
+//                        jwtAuthenticationFilter,
+//                        UsernamePasswordAuthenticationFilter.class
+//                )
 
                 .httpBasic(basic -> basic.disable());
 

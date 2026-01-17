@@ -19,19 +19,18 @@ import java.util.Map;
 @Component
 public class AuthenticationEntryPoint implements org.springframework.security.web.AuthenticationEntryPoint {
     private final ObjectMapper objectMapper = new ObjectMapper();
+
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException {
-     log.error("Unauthorized error : {} ", authException.getMessage());
-     response.setContentType(MediaType.APPLICATION_JSON_VALUE);
-     response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+        log.error("Unauthorized error: {}", authException.getMessage());
+
+        response.setContentType(MediaType.APPLICATION_JSON_VALUE);
+        response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
 
         Map<String, Object> body = new HashMap<>();
-        body.put("status",HttpServletResponse.SC_UNAUTHORIZED);
-        body.put("error","unauthorized or token has expired");
-        body.put("message", authException.getMessage());
+        body.put("status", HttpServletResponse.SC_UNAUTHORIZED);
+        body.put("error", "Unauthorized or Token has expired");
 
         response.getWriter().write(objectMapper.writeValueAsString(body));
-
-
     }
 }
